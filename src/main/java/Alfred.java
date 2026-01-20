@@ -83,9 +83,6 @@ public class Alfred {
         System.out.println(initialGreeting);
         ArrayList<Task> list = new ArrayList<Task>();
 
-        // u needa split the whole task
-        // so it can be separated into todo, deadline, event, unmark, mark, list will be defaulted
-
         while (true) {
             Scanner reader = new Scanner(System.in);
             String readInput = reader.nextLine();
@@ -137,6 +134,31 @@ public class Alfred {
                 }
                 catch (RuntimeException e) {
                     System.out.println("Please enter the task you want to mark (Eg. mark 1)\n");
+                }
+            } else if (task.indexOf("delete") == 0) {
+                try {
+                    int i = Integer.parseInt(task.get(1)) - 1;
+
+                    if (task.size() > 2) {
+                        throw new RuntimeException();
+                    }
+
+                    System.out.println("Deleting your task now Sir\n");
+
+                    Task currTask = list.get(i);
+                    list.remove(i);
+
+                    System.out.println("I have successfully deleted the task for you Sir:");
+                    System.out.println("   " + currTask + "\n");
+                }
+                catch (NumberFormatException c) {
+                    System.out.println("That's an invalid index Sir\n");
+                }
+                catch (IndexOutOfBoundsException i) {
+                    System.out.println("There isn't a task with that number Sir\n");
+                }
+                catch (RuntimeException e) {
+                    System.out.println("Please enter the task you want to delete (Eg. delete 1)\n");
                 }
             }
             else {
