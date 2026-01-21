@@ -1,5 +1,311 @@
 Good morning Master!
 What do you need from me?
 
+Adding TODO task for you Sir
 
+I have successfully added the task for you Sir:
+   [T][ ] borrow book
+You currently have 1 task(s) at the moment
+
+What else do you need?
+
+Here's your list Sir
+1. [T][ ] borrow book
+
+What else do you need?
+
+Adding DEADLINE task for you Sir
+
+I have successfully added the task for you Sir:
+   [D][ ] return book (by: Sunday)
+You currently have 2 task(s) at the moment
+
+What else do you need?
+
+Adding EVENT task for you Sir
+
+I have successfully added the task for you Sir:
+   [E][ ] project meeting (from: Mon 2pm to: 4pm)
+You currently have 3 task(s) at the moment
+
+What else do you need?
+
+I have successfully marked the task for you Sir:
+   [E][X] project meeting (from: Mon 2pm to: 4pm)
+
+What else do you need?
+
+I have successfully marked the task for you Sir:
+   [E][X] project meeting (from: Mon 2pm to: 4pm)
+
+What else do you need?
+
+Please enter the task you want to mark (Eg: mark 1)
+
+What else do you need?
+
+There isn't a task with that number Sir
+
+What else do you need?
+
+There isn't a task with that number Sir
+
+What else do you need?
+
+There isn't a task with that number Sir
+
+What else do you need?
+
+That's an invalid index Sir
+
+What else do you need?
+
+Please enter the task you want to mark (Eg: mark 1)
+
+What else do you need?
+
+Here's your list Sir
+1. [T][ ] borrow book
+2. [D][ ] return book (by: Sunday)
+3. [E][X] project meeting (from: Mon 2pm to: 4pm)
+
+What else do you need?
+
+I have successfully unmarked the task for you Sir:
+   [E][ ] project meeting (from: Mon 2pm to: 4pm)
+
+What else do you need?
+
+I have successfully unmarked the task for you Sir:
+   [E][ ] project meeting (from: Mon 2pm to: 4pm)
+
+What else do you need?
+
+Please enter the task you want to unmark (Eg: unmark 1)
+
+What else do you need?
+
+There isn't a task with that number Sir
+
+What else do you need?
+
+There isn't a task with that number Sir
+
+What else do you need?
+
+There isn't a task with that number Sir
+
+What else do you need?
+
+That's an invalid index Sir
+
+What else do you need?
+
+Please enter the task you want to unmark (Eg: unmark 1)
+
+What else do you need?
+
+Here's your list Sir
+1. [T][ ] borrow book
+2. [D][ ] return book (by: Sunday)
+3. [E][ ] project meeting (from: Mon 2pm to: 4pm)
+
+What else do you need?
+
+I don't quite get what you're saying Sir
+
+What else do you need?
+
+Adding TODO task for you Sir
+
+You're missing your task for your TODO task Sir
+
+What else do you need?
+
+Adding DEADLINE task for you Sir
+
+You're missing your task for your DEADLINE task Sir
+
+What else do you need?
+
+Adding EVENT task for you Sir
+
+You're missing your task for your EVENT task Sir
+
+What else do you need?
+
+Adding DEADLINE task for you Sir
+
+I didn't get your deadline Sir
+(Eg: deadline CLEAN THE BATMOBILE /by SUNDAY)
+
+What else do you need?
+
+Adding DEADLINE task for you Sir
+
+I didn't get your deadline Sir
+(Eg: deadline CLEAN THE BATMOBILE /by SUNDAY)
+
+What else do you need?
+
+Adding DEADLINE task for you Sir
+
+I didn't get your deadline Sir
+(Eg: deadline CLEAN THE BATMOBILE /by SUNDAY)
+
+What else do you need?
+
+Adding DEADLINE task for you Sir
+
+I didn't get your deadline Sir
+(Eg: deadline CLEAN THE BATMOBILE /by SUNDAY)
+
+What else do you need?
+
+Adding EVENT task for you Sir
+
+I didn't get your event timing Sir
+(Eg: event CLEAN THE BATMOBILE /from 9am /to 9pm)
+
+What else do you need?
+
+Adding EVENT task for you Sir
+
+I didn't get your event timing Sir
+(Eg: event CLEAN THE BATMOBILE /from 9am /to 9pm)
+
+What else do you need?
+
+Adding EVENT task for you Sir
+
+I didn't get your event timing Sir
+(Eg: event CLEAN THE BATMOBILE /from 9am /to 9pm)
+
+What else do you need?
+
+Adding EVENT task for you Sir
+
+I didn't get your event timing Sir
+(Eg: event CLEAN THE BATMOBILE /from 9am /to 9pm)
+
+What else do you need?
+
+Adding EVENT task for you Sir
+
+I didn't get your event timing Sir
+(Eg: event CLEAN THE BATMOBILE /from 9am /to 9pm)
+
+What else do you need?
+
+Adding EVENT task for you Sir
+
+I didn't get your event timing Sir
+(Eg: event CLEAN THE BATMOBILE /from 9am /to 9pm)
+
+What else do you need?
+
+Adding EVENT task for you Sir
+
+I didn't get your event timing Sir
+(Eg: event CLEAN THE BATMOBILE /from 9am /to 9pm)
+
+What else do you need?
+
+Deleting your task now Sir
+
+I have successfully deleted the task for you Sir:
+   [T][ ] borrow book
+
+What else do you need?
+
+Here's your list Sir
+1. [D][ ] return book (by: Sunday)
+2. [E][ ] project meeting (from: Mon 2pm to: 4pm)
+
+What else do you need?
+
+Deleting your task now Sir
+
+I have successfully deleted the task for you Sir:
+   [E][ ] project meeting (from: Mon 2pm to: 4pm)
+
+What else do you need?
+
+Here's your list Sir
+1. [D][ ] return book (by: Sunday)
+
+What else do you need?
+
+Deleting your task now Sir
+
+There isn't a task with that number Sir
+
+What else do you need?
+
+Here's your list Sir
+1. [D][ ] return book (by: Sunday)
+
+What else do you need?
+
+There isn't a task with that number Sir
+
+What else do you need?
+
+Which task do you want to delete Sir?
+(Eg: delete 1)
+
+What else do you need?
+
+That's an invalid index Sir
+
+What else do you need?
+
+Deleting your task now Sir
+
+There isn't a task with that number Sir
+
+What else do you need?
+
+Deleting your task now Sir
+
+There isn't a task with that number Sir
+
+What else do you need?
+
+Deleting your task now Sir
+
+I have successfully deleted the task for you Sir:
+   [D][ ] return book (by: Sunday)
+
+What else do you need?
+
+Deleting your task now Sir
+
+There isn't a task with that number Sir
+
+What else do you need?
+
+Here's your list Sir
+
+What else do you need?
+
+I don't quite get what you're saying Sir
+
+What else do you need?
+
+I don't quite get what you're saying Sir
+
+What else do you need?
+
+Waiting for your command Sir
+
+I don't quite get what you're saying Sir
+
+What else do you need?
+
+I don't quite get what you're saying Sir
+
+What else do you need?
+
+Good day Sir!
 
