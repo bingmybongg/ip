@@ -11,6 +11,10 @@ public class Deadline extends Task {
         this.deadline = curr.deadline;
     }
 
+    public String type() { return "deadline"; }
+
+    public String getDeadline() { return this.deadline; }
+
     public Task mark() {
         return new Deadline(this, true);
     }

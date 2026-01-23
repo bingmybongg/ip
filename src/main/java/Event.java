@@ -14,6 +14,14 @@ public class Event extends Task {
         this.to = curr.to;
     }
 
+    public String type() {
+        return "event";
+    }
+
+    public String getFrom() { return this.from; }
+
+    public String getTo() { return this.to; }
+
     public Task mark() {
         return new Event(this, true);
     }

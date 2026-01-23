@@ -20,8 +20,13 @@ public abstract class Task {
         this.isMarked = isMarked;
     }
 
+    public String getMark() { return this.isMarked ? "1" : "0"; }
+
+    public String getTask() { return this.task; }
+
     public abstract Task mark();
     public abstract Task unmark();
+    public abstract String type();
 
     public String toString() {
         return (isMarked ? "[X] " : "[ ] ") + this.task;

@@ -1,7 +1,13 @@
+import java.io.File;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Arrays;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.io.FileWriter;
 
 public class Alfred {
     private static boolean addTask(ArrayList<Task> list, List<String> taskList, String type) {
@@ -84,7 +90,104 @@ public class Alfred {
 
     }
 
-    public static void main(String[] args) {
+    private static void loadFile(Path file, ArrayList<Task> list) throws IOException {
+        try {
+            List<String> lines = Files.readAllLines(file);
+
+            for (String line : lines) {
+                List<String> lineList = Arrays.asList(line.split(","));
+
+                switch (lineList.get(0)) {
+                    case ("todo"): {
+                        String task = lineList.get(1);
+                        String isMarked = lineList.get(2);
+                        Task newTask = new Todo(task);
+
+                        if (isMarked.equals("1")) {
+                            newTask = newTask.mark();
+                        }
+
+                        list.add(newTask);
+                        break;
+                    }
+                    case ("deadline"): {
+                        String task = lineList.get(1);
+                        String isMarked = lineList.get(2);
+                        String by = lineList.get(3);
+
+                        Task newTask = new Deadline(task, by);
+
+                        if (isMarked.equals("1")) {
+                            newTask = newTask.mark();
+                        }
+
+                        list.add(newTask);
+                        break;
+                    }
+                    case ("event"): {
+                        String task = lineList.get(1);
+                        String isMarked = lineList.get(2);
+                        String from = lineList.get(3);
+                        String to = lineList.get(4);
+
+                        Task newTask = new Event(task, from, to);
+
+                        if (isMarked.equals("1")) {
+                            newTask = newTask.mark();
+                        }
+
+                        list.add(newTask);
+                        break;
+                    }
+                    default: {
+                        System.out.println("Part of your file has been corrupted\n");
+                        break;
+                    }
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("The file has been corrupted\n");
+        }
+    }
+
+    private static void saveFile(ArrayList<Task> list, Path file) throws IOException {
+        FileWriter fw = new FileWriter(file.toString(), true);
+
+        for (Task task : list) {
+            String type = task.type();
+
+            switch (type) {
+                case ("todo"): {
+                    String t = type + "," +
+                               task.getTask() + "," +
+                               task.getMark();
+                    fw.write(t + "\n");
+                    break;
+                }
+                case ("deadline"): {
+                    String t = type + "," +
+                               task.getTask() + "," +
+                               task.getMark() + "," +
+                               ((Deadline) task).getDeadline();
+                    fw.write(t + "\n");
+                    break;
+                }
+                case ("event"): {
+                    String t = type + "," +
+                               task.getTask() + "," +
+                               task.getMark() + "," +
+                               ((Event) task).getFrom() + "," +
+                               ((Event) task).getTo();
+                    fw.write(t + "\n");
+                    break;
+                }
+            }
+        }
+
+        fw.close();
+    }
+
+    public static void main(String[] args) throws IOException {
         String initialGreeting = "Good morning Master!\nWhat do you need from me?\n";
         String endChat = "Good day Sir!\n";
         String separator = "What else do you need?\n";
@@ -92,6 +195,19 @@ public class Alfred {
         System.out.println(initialGreeting);
         ArrayList<Task> list = new ArrayList<Task>();
         Scanner reader = new Scanner(System.in);
+
+        String path = System.getProperty("user.home") + File.separator + "data" + File.separator + "alfred.csv";
+        Path file = Paths.get(path);
+
+        Files.createDirectories(Paths.get(System.getProperty("user.home") + File.separator + "data"));
+
+        if (Files.exists(file)) {
+            loadFile(file, list);
+            Files.delete(file);
+            Files.createFile(file);
+        } else {
+            Files.createFile(file);
+        }
 
         while (reader.hasNextLine()) {
             String readInput = reader.nextLine().trim();
@@ -185,6 +301,8 @@ public class Alfred {
             }
             System.out.println(separator);
         }
+
+        saveFile(list, file);
         System.out.println(endChat);
     }
 }
