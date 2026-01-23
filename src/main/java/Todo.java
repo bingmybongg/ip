@@ -11,9 +11,9 @@ public class Todo extends Task {
         return new Todo(this.task, true);
     }
 
-    public Task unmark() {
-        return new Todo(this.task, false);
-    }
+    public Task unmark() { return new Todo(this.task, false); }
+
+    public String type() { return "todo"; }
 
     public String toString() {
         return "[T]" + super.toString();
