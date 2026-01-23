@@ -1,4 +1,5 @@
 import java.io.File;
+import java.time.LocalDateTime;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,10 +9,15 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.io.FileWriter;
+import java.time.format.DateTimeFormatter;
+import java.time.DateTimeException;
+
 
 public class Alfred {
     private static boolean addTask(ArrayList<Task> list, List<String> taskList, String type) {
         try {
+            DateTimeFormatter presentable = DateTimeFormatter.ofPattern("d MMM yyyy h:mma");
+
             switch (type) {
                 case "todo": {
                     System.out.println("Adding " + type.toUpperCase() + " task for you Sir\n");
@@ -26,7 +32,7 @@ public class Alfred {
                 case "deadline": {
                     System.out.println("Adding " + type.toUpperCase() + " task for you Sir\n");
                     if (taskList.isEmpty()) {
-                        throw new RuntimeException(type.toUpperCase());
+                        throw new RuntimeException();
                     }
                     try {
                         int i = taskList.indexOf("/by");
@@ -37,20 +43,27 @@ public class Alfred {
 
                         String deadline = String.join(" ",
                                 taskList.subList(i + 1, taskList.size()));
+
+                        LocalDateTime deadlineAccurate = LocalDateTime.parse(deadline,
+                                DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
+
+                        deadline = deadlineAccurate.format(presentable);
+
                         String task = String.join(" ",
                                 taskList.subList(0, i));
+
                         list.add(new Deadline(task, deadline));
                         return true;
                     } catch (IndexOutOfBoundsException | IllegalArgumentException e) {
                         System.out.println("I didn't get your deadline Sir");
-                        System.out.println("(Eg: deadline CLEAN THE BATMOBILE /by SUNDAY)\n");
+                        System.out.println("(Eg: deadline CLEAN THE BATMOBILE /by yyyy-MM-dd HHmm)\n");
                         return false;
                     }
                 }
                 case "event": {
                     System.out.println("Adding " + type.toUpperCase() + " task for you Sir\n");
                     if (taskList.isEmpty()) {
-                        throw new RuntimeException(type.toUpperCase());
+                        throw new RuntimeException();
                     }
                     try {
                         int indexFrom = taskList.indexOf("/from");
@@ -62,12 +75,22 @@ public class Alfred {
                         String task = String.join(" ", taskList.subList(0, indexFrom));
                         String from = String.join(" ", taskList.subList(indexFrom + 1, indexTo));
                         String to = String.join(" ", taskList.subList(indexTo + 1, taskList.size()));
+
+                        LocalDateTime deadlineAccurateFrom = LocalDateTime.parse(from,
+                                DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
+
+                        LocalDateTime deadlineAccurateTo = LocalDateTime.parse(to,
+                                DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
+
+                        from = deadlineAccurateFrom.format(presentable);
+                        to = deadlineAccurateTo.format(presentable);
+
                         Task event = new Event(task, from, to);
                         list.add(event);
                         return true;
                     } catch (IndexOutOfBoundsException | IllegalArgumentException e) {
                         System.out.println("I didn't get your event timing Sir\n" +
-                                "(Eg: event CLEAN THE BATMOBILE /from 9am /to 9pm)\n");
+                                "(Eg: event CLEAN THE BATMOBILE /from yyyy-MM-dd HHmm /to yyyy-MM-dd HHmm)\n");
                         return false;
                     }
                 }
@@ -76,8 +99,14 @@ public class Alfred {
                     return false;
                 }
             }
-        } catch (RuntimeException e) {
-            System.out.println("You're missing your task for your " + e.getMessage() + " task Sir\n");
+        }
+        catch (DateTimeException d) {
+            System.out.println("Remember that your time must be in yyyy-MM-dd HHmm format Sir:\n" +
+                    "(Eg: 1999-02-26 1801)\n");
+            return false;
+        }
+        catch (RuntimeException e) {
+            System.out.println("You're missing your task Sir\n");
             return false;
         }
     }
