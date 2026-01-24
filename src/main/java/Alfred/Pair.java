@@ -1,3 +1,5 @@
+package Alfred;
+
 public class Pair<T, U> {
     private final T t;
     private final U u;

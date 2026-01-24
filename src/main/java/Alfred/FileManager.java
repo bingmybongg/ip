@@ -1,3 +1,5 @@
+package Alfred;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.nio.file.Files;
