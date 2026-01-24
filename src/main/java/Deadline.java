@@ -15,12 +15,23 @@ public class Deadline extends Task {
 
     public String getDeadline() { return this.deadline; }
 
-    public Task mark() {
-        return new Deadline(this, true);
-    }
+    public Task mark() { return new Deadline(this, true); }
 
     public Task unmark() {
         return new Deadline(this, false);
+    }
+
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (other instanceof Deadline otherDeadline) {
+            return (otherDeadline.task.equals(this.task)) &&
+                   (otherDeadline.deadline.equals(this.deadline)) ;
+        }
+
+        return false;
     }
 
     public String toString() {

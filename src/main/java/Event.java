@@ -30,6 +30,20 @@ public class Event extends Task {
         return new Event(this, false);
     }
 
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (other instanceof Event event) {
+            return (event.task.equals(this.task)) &&
+                   (event.from.equals(this.from)) &&
+                   (event.to.equals(this.to));
+        }
+
+        return false;
+    }
+
     public String toString() {
         return "[E]" + super.toString() + " (from: " + this.from + " to: " + this.to + ")";
     }
