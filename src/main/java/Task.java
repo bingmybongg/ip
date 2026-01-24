@@ -27,6 +27,7 @@ public abstract class Task {
     public abstract Task mark();
     public abstract Task unmark();
     public abstract String type();
+    public abstract boolean equals(Object other);
 
     public String toString() {
         return (isMarked ? "[X] " : "[ ] ") + this.task;

@@ -15,6 +15,18 @@ public class Todo extends Task {
 
     public String type() { return "todo"; }
 
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (other instanceof Todo todo) {
+            return todo.task.equals(this.task);
+        }
+
+        return false;
+    }
+
     public String toString() {
         return "[T]" + super.toString();
     }
