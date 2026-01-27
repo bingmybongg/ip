@@ -8,7 +8,13 @@ public class Ui {
     Ui(TaskList tasks) {
         this.tasks = tasks;
     }
-
+    /**
+     * This method will read the input from the user, parse the input into an actionable
+     * command and run different methods based on the input. Afterwhich, it will return true
+     * if the chatbot should continue running and false if the user wants to exit
+     * @param input
+     * @return True if the program should not exit False if the program should exit
+     */
     public boolean readInput(String input) throws IOException {
         Pair<String, Task> action = Parser.parse(input, this.tasks);
 

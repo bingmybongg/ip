@@ -9,6 +9,11 @@ public class Pair<T, U> {
         this.u = u;
     }
 
+    /**
+     * This method checks if the object passed into to this method is equal to this task
+     * @param other object
+     * @return True if the object is equal to this or False if object is not equal
+     */
     public boolean equals(Object other) {
         if (other == this) {
             return true;

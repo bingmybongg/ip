@@ -19,9 +19,16 @@ public abstract class Task {
         this.task = task;
         this.isMarked = isMarked;
     }
-
+    /**
+     * This method checks if the task is marked, mainly meant for saving the
+     * leftover tasks for the next time the program runs
+     * @return "1" if the task is marked else "0"
+     */
     public String getMark() { return this.isMarked ? "1" : "0"; }
-
+    /**
+     * This method returns the task
+     * @return the task
+     */
     public String getTask() { return this.task; }
 
     public abstract Task mark();

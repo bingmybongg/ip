@@ -7,6 +7,13 @@ import java.util.Arrays;
 import java.util.List;
 
 public interface Parser {
+    /**
+     * This method will take in a String input and return pair of values so
+     * that the Ui could easily understand what the user wants to do
+     * @param input containing the instruction and required inputs
+     * @param tasks for methods like mark, delete
+     * @return Pair, first value being the instruction, second value being the task you want to use it on
+     */
     static Pair<String, Task> parse(String input, TaskList tasks) {
         String defaultError = "I'm not sure what you're saying sir\n";
 

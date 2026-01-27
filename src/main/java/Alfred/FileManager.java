@@ -17,6 +17,11 @@ public class FileManager {
         this.file = Paths.get(path + File.separator + "alfred.csv");
     }
 
+    /**
+     * This method loads the saved tasks from the previous time the program was run
+     * and returns the ArrayList containing all the tasks saved from the previous program
+     * @return ArrayList of tasks
+     */
     public ArrayList<Task> load() throws IOException {
         if (Files.exists(this.file)) {
             ArrayList<Task> tasks = new ArrayList<>();
@@ -66,6 +71,11 @@ public class FileManager {
         }
     }
 
+    /**
+     * This method saves the tasks from the current ArrayList into a csv file
+     * so it can be later loaded when the program runs again
+     * @param tasks that were not previously deleted
+     */
     public void save(ArrayList<Task> tasks) throws IOException {
         Files.createFile(this.file);
         FileWriter fw = new FileWriter(this.file.toString(), true);
