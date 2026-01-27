@@ -34,22 +34,21 @@ public class Ui {
                 return true;
             }
             case ("read"): {
-                this.tasks.read();
+                System.out.println(this.tasks);
                 return true;
             }
             case ("mark"): {
                 System.out.println("Marking task for you Sir\n");
-
-                this.tasks.mark(action.u());
+                Task newTask = this.tasks.mark(action.u());
                 System.out.println("I have successfully marked the task for you Sir:");
-                System.out.println("   " + action.u());
+                System.out.println("   " + newTask);
                 return true;
             }
             case ("unmark"): {
                 System.out.println("Unmarking task for you Sir\n");
-                this.tasks.unmark(action.u());
+                Task newTask = this.tasks.unmark(action.u());
                 System.out.println("I have successfully marked the task for you Sir:");
-                System.out.println("   " + action.u());
+                System.out.println("   " + newTask);
                 return true;
             }
             case ("exit"): {
