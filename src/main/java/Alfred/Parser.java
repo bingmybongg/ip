@@ -106,46 +106,59 @@ public interface Parser {
             return new Pair<>("read", null);
         }
         case ("mark"): {
-            if (task.size() != 2) { return new Pair<>(defaultError, null); }
+            String markError = """
+                                 Check the list to choose which task to mark Sir
+                                 (Eg: mark #)
+                                 """;
+
+            if (task.size() != 2) { return new Pair<>(markError, null); }
 
             try {
                 Task markTask = tasks.get(Integer.parseInt(task.get(1)) - 1);
                 return new Pair<>("mark", markTask);
             }
             catch (NumberFormatException | IndexOutOfBoundsException e) {
-                return new Pair<>("""
-                                  Check the list to choose which task to mark Sir
-                                  (Eg: mark #)
-                                  """, null);
+                return new Pair<>(markError, null);
             }
         }
         case ("unmark"): {
-            if (task.size() != 2) { return new Pair<>(defaultError, null); }
+            String unmarkError = """
+                                 Check the list to choose which task to unmark Sir
+                                 (Eg: unmark #)
+                                 """;
+
+            if (task.size() != 2) { return new Pair<>(unmarkError, null); }
 
             try {
                 Task unmarkTask = tasks.get(Integer.parseInt(task.get(1)) - 1);
                 return new Pair<>("unmark",unmarkTask);
             }
             catch (NumberFormatException | IndexOutOfBoundsException e) {
-                return new Pair<>("""
-                                  Check the list to choose which task to unmark Sir
-                                  (Eg: unmark #)
-                                  """, null);
+                return new Pair<>(unmarkError, null);
             }
         }
         case ("delete"): {
-            if (task.size() != 2) { return new Pair<>(defaultError, null); }
+            String deleteError = """
+                            Check the list to choose which task to delete Sir
+                            (Eg: delete #)
+                            """;
+            if (task.size() != 2) { return new Pair<>(deleteError, null); }
 
             try {
                 Task deleteTask = tasks.get(Integer.parseInt(task.get(1)) - 1);
                 return new Pair<>("delete", deleteTask);
             }
             catch (NumberFormatException | IndexOutOfBoundsException e) {
-                return new Pair<>("""
-                            Check the list to choose which task to delete Sir
-                            (Eg: delete #)
-                            """, null);
+                return new Pair<>(deleteError, null);
             }
+        }
+        case ("find"): {
+            String findError = """
+                    You need to tell me a single keyword you want to find Sir
+                    (Eg: find batmobile)
+                    """;
+            if (task.size() != 2) { return new Pair<>(findError, null); }
+            return new Pair<>("find", new Todo(task.get(1)));
         }
         case ("bye"): {
             if (task.size() != 1) { return new Pair<>(defaultError, null); }
