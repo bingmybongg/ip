@@ -14,8 +14,14 @@ public class Pair<T, U> {
             return true;
         }
 
-        if (other instanceof Pair<?, ?> pair) {
-            return pair.t.equals(this.t) && pair.u.equals(this.u);
+        try {
+
+            if (other instanceof Pair<?, ?> pair) {
+                return pair.t.equals(this.t) && pair.u.equals(this.u);
+            }
+        } catch (NullPointerException n) {
+            Pair<?, ?> pair = (Pair<?, ?>) other;
+            return pair.t.equals(this.t) && pair.u == null;
         }
 
         return false;
