@@ -29,7 +29,7 @@ public class FileManager {
                         Task curr = new Todo(task[1]);
 
                         if (task[2].equals("1")) {
-                            curr.mark();
+                            curr = curr.mark();
                         }
 
                         tasks.add(curr);
@@ -39,7 +39,7 @@ public class FileManager {
                         Task curr = new Deadline(task[1], task[3]);
 
                         if (task[2].equals("1")) {
-                            curr.mark();
+                            curr = curr.mark();
                         }
 
                         tasks.add(curr);
@@ -49,7 +49,7 @@ public class FileManager {
                         Task curr = new Event(task[1], task[3], task[4]);
 
                         if (task[2].equals("1")) {
-                            curr.mark();
+                            curr = curr.mark();
                         }
 
                         tasks.add(curr);

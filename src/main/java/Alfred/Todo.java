@@ -1,7 +1,7 @@
 package Alfred;
 
 public class Todo extends Task {
-    Todo(String task) {
+    public Todo(String task) {
         super(task);
     }
 
