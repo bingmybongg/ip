@@ -15,7 +15,6 @@ public class Pair<T, U> {
         }
 
         try {
-
             if (other instanceof Pair<?, ?> pair) {
                 return pair.t.equals(this.t) && pair.u.equals(this.u);
             }

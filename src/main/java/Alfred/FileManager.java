@@ -25,38 +25,38 @@ public class FileManager {
             for (String line : lines) {
                 String[] task = line.split(",");
                 switch (task[0]) {
-                    case ("todo"): {
-                        Task curr = new Todo(task[1]);
+                case ("todo"): {
+                    Task curr = new Todo(task[1]);
 
-                        if (task[2].equals("1")) {
-                            curr = curr.mark();
-                        }
-
-                        tasks.add(curr);
-                        break;
+                    if (task[2].equals("1")) {
+                        curr = curr.mark();
                     }
-                    case ("deadline"): {
-                        Task curr = new Deadline(task[1], task[3]);
 
-                        if (task[2].equals("1")) {
-                            curr = curr.mark();
-                        }
+                    tasks.add(curr);
+                    break;
+                }
+                case ("deadline"): {
+                    Task curr = new Deadline(task[1], task[3]);
 
-                        tasks.add(curr);
-                        break;
+                    if (task[2].equals("1")) {
+                        curr = curr.mark();
                     }
-                    case ("event"): {
-                        Task curr = new Event(task[1], task[3], task[4]);
 
-                        if (task[2].equals("1")) {
-                            curr = curr.mark();
-                        }
+                    tasks.add(curr);
+                    break;
+                }
+                case ("event"): {
+                    Task curr = new Event(task[1], task[3], task[4]);
 
-                        tasks.add(curr);
-                        break;
+                    if (task[2].equals("1")) {
+                        curr = curr.mark();
                     }
-                    default:
-                        break;
+
+                    tasks.add(curr);
+                    break;
+                }
+                default:
+                    break;
                 }
             }
             Files.delete(file);
@@ -74,30 +74,30 @@ public class FileManager {
             String type = task.type();
 
             switch (type) {
-                case ("todo"): {
-                    String t = type + "," +
-                            task.getTask() + "," +
-                            task.getMark();
-                    fw.write(t + "\n");
-                    break;
-                }
-                case ("deadline"): {
-                    String t = type + "," +
-                            task.getTask() + "," +
-                            task.getMark() + "," +
-                            ((Deadline) task).getDeadline();
-                    fw.write(t + "\n");
-                    break;
-                }
-                case ("event"): {
-                    String t = type + "," +
-                            task.getTask() + "," +
-                            task.getMark() + "," +
-                            ((Event) task).getFrom() + "," +
-                            ((Event) task).getTo();
-                    fw.write(t + "\n");
-                    break;
-                }
+            case ("todo"): {
+                String t = type + "," +
+                           task.getTask() + "," +
+                           task.getMark();
+                fw.write(t + "\n");
+                break;
+            }
+            case ("deadline"): {
+                String t = type + "," +
+                           task.getTask() + "," +
+                           task.getMark() + "," +
+                           ((Deadline) task).getDeadline();
+                fw.write(t + "\n");
+                break;
+            }
+            case ("event"): {
+                String t = type + "," +
+                           task.getTask() + "," +
+                           task.getMark() + "," +
+                           ((Event) task).getFrom() + "," +
+                           ((Event) task).getTo();
+                fw.write(t + "\n");
+                break;
+            }
             }
         }
 

@@ -1,12 +1,17 @@
 package seedu.Alfred;
 
-import Alfred.*;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.File;
 import java.io.IOException;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
+
+import Alfred.Pair;
+import Alfred.Parser;
+import Alfred.Task;
+import Alfred.TaskList;
+import Alfred.Todo;
 
 public class ParserTest {
     @Test
