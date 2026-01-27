@@ -19,7 +19,6 @@ public class TaskListTest {
         tempList.add(tempTask);
 
         assertEquals("""
-                Here's your list Sir
                 1. [T][ ] Clean the batmobile
                 
                 """, tempList.toString());
@@ -34,7 +33,6 @@ public class TaskListTest {
         tempList.mark(tempTask);
 
         assertEquals("""
-                Here's your list Sir
                 1. [T][X] Clean the batmobile
                 
                 """, tempList.toString());

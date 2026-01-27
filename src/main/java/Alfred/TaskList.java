@@ -12,6 +12,11 @@ public class TaskList {
         this.tasks = this.fm.load();
     }
 
+    private TaskList(FileManager fm, ArrayList<Task> tasks) {
+        this.fm = fm;
+        this.tasks = tasks;
+    }
+
     public void add(Task task) {
         this.tasks.add(task);
     }
@@ -46,8 +51,19 @@ public class TaskList {
 
     public int size() { return this.tasks.size(); }
 
+    public TaskList find(String keyword) {
+        ArrayList<Task> newList = new ArrayList<>();
+
+        for (Task task : this.tasks) {
+            if (task.contains(keyword)) {
+                newList.add(task);
+            }
+        }
+        return new TaskList(this.fm, newList);
+    }
+
     public String toString() {
-        String res = "Here's your list Sir\n";
+        String res = "";
 
         for (Task task : tasks) {
             res += (tasks.indexOf(task) + 1) + ". " + task + "\n";

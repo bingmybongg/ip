@@ -34,6 +34,7 @@ public class Ui {
             return true;
         }
         case ("read"): {
+            System.out.println("Here's your list Sir");
             System.out.println(this.tasks);
             return true;
         }
@@ -49,6 +50,14 @@ public class Ui {
             Task newTask = this.tasks.unmark(action.u());
             System.out.println("I have successfully marked the task for you Sir:");
             System.out.println("   " + newTask);
+            return true;
+        }
+        case("find"): {
+            String keyword = action.u().getTask();
+            System.out.println("Finding the tasks containing '" + keyword + "' for you Sir\n");
+            TaskList found = this.tasks.find(keyword);
+            System.out.println("Here are the matching tasks in your list Sir:");
+            System.out.println(found);
             return true;
         }
         case ("exit"): {

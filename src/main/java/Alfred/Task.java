@@ -24,6 +24,8 @@ public abstract class Task {
 
     public String getTask() { return this.task; }
 
+    public boolean contains(String keyword) { return this.task.contains(keyword); }
+
     public abstract Task mark();
     public abstract Task unmark();
     public abstract String type();
