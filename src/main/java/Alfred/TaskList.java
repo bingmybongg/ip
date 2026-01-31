@@ -81,7 +81,9 @@ public class TaskList {
      * This method returns the number of tasks
      * @return number of tasks
      */
-    public int size() { return this.tasks.size(); }
+    public int size() {
+        return this.tasks.size();
+    }
 
     public TaskList find(String keyword) {
         ArrayList<Task> newList = new ArrayList<>();
@@ -94,6 +96,7 @@ public class TaskList {
         return new TaskList(this.fm, newList);
     }
 
+    @Override
     public String toString() {
         String res = "";
 

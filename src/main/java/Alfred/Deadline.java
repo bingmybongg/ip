@@ -17,19 +17,25 @@ public class Deadline extends Task {
      * This method returns the task type
      * @return The task type meant for saving the tasks for the user.
      */
-    public String type() { return "deadline"; }
+    public String type() {
+        return "deadline";
+    }
 
     /**
      * This method returns the deadline of this task
      * @return The deadline of this task
      */
-    public String getDeadline() { return this.deadline; }
+    public String getDeadline() {
+        return this.deadline;
+    }
 
     /**
      * This method marks the task
      * @return The task that has just been marked
      */
-    public Task mark() { return new Deadline(this, true); }
+    public Task mark() {
+        return new Deadline(this, true);
+    }
 
     /**
      * This method unmarks the task

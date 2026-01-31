@@ -77,6 +77,7 @@ public class Ui {
         }
     }
 
+    @Override
     public String toString() {
         return "Good morning Master!\nWhat do you need from me?\n";
     }

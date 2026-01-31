@@ -27,12 +27,16 @@ public class Event extends Task {
      * This method returns the date and time for from
      * @return The date and time for from
      */
-    public String getFrom() { return this.from; }
+    public String getFrom() {
+        return this.from;
+    }
     /**
      * This method returns the date and time for to
      * @return The date and time for to
      */
-    public String getTo() { return this.to; }
+    public String getTo() {
+        return this.to;
+    }
     /**
      * This method marks the task
      * @return The task that has just been marked
@@ -47,11 +51,8 @@ public class Event extends Task {
     public Task unmark() {
         return new Event(this, false);
     }
-    /**
-     * This method checks if the object passed into to this method is equal to this task
-     * @param other object
-     * @return True if the object is equal to this or False if object is not equal
-     */
+
+    @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;
@@ -66,6 +67,7 @@ public class Event extends Task {
         return false;
     }
 
+    @Override
     public String toString() {
         return "[E]" + super.toString() + " (from: " + this.from + " to: " + this.to + ")";
     }

@@ -24,20 +24,27 @@ public abstract class Task {
      * leftover tasks for the next time the program runs
      * @return "1" if the task is marked else "0"
      */
-    public String getMark() { return this.isMarked ? "1" : "0"; }
+    public String getMark() {
+        return this.isMarked ? "1" : "0";
+    }
     /**
      * This method returns the task
      * @return the task
      */
-    public String getTask() { return this.task; }
+    public String getTask() {
+        return this.task;
+    }
 
-    public boolean contains(String keyword) { return this.task.contains(keyword); }
+    public boolean contains(String keyword) {
+        return this.task.contains(keyword);
+    }
 
     public abstract Task mark();
     public abstract Task unmark();
     public abstract String type();
     public abstract boolean equals(Object other);
 
+    @Override
     public String toString() {
         return (isMarked ? "[X] " : "[ ] ") + this.task;
     }
