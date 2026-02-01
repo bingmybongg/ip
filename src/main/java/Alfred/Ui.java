@@ -8,6 +8,11 @@ public class Ui {
     Ui(TaskList tasks) {
         this.tasks = tasks;
     }
+
+    String getResponse(String input) {
+        return "okay: " + input;
+    }
+
     /**
      * This method will read the input from the user, parse the input into an actionable
      * command and run different methods based on the input. Afterwhich, it will return true

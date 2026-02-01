@@ -13,6 +13,11 @@ public class Alfred {
         this.ui = new Ui(new TaskList(path));
     }
 
+    Alfred() throws IOException {
+        String path = System.getProperty("user.home") + File.separator + "data";
+        this.ui = new Ui(new TaskList(path));
+    }
+
     /**
      * This is the main method that will run the show for the Alfred Chatbot
      * <p>
@@ -83,9 +88,13 @@ public class Alfred {
         System.out.println("Goodbye Sir!\n");
     }
 
+    public String getResponse(String input) {
+        return this.ui.getResponse(input);
+    }
+
     public static void main(String[] args) throws IOException {
         Application.launch(Main.class, args);
-        String path = System.getProperty("user.home") + File.separator + "data";
-        new Alfred(path).run();
+        // String path = System.getProperty("user.home") + File.separator + "data";
+        // new Alfred(path).run();
     }
 }
