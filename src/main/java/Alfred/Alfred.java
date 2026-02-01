@@ -75,21 +75,24 @@ public class Alfred {
         while (input.hasNextLine()) {
             String readInput = input.nextLine().trim();
 
-            boolean res = this.ui.readInput(readInput);
+            String res = this.ui.getResponse(readInput);
+            System.out.println(res);
 
-            if (!res) {
+            if (res == "Goodbye Sir!\n") {
                 input.close();
                 break;
             }
 
             System.out.println("What else do you need?\n");
         }
-
-        System.out.println("Goodbye Sir!\n");
     }
 
-    public String getResponse(String input) {
+    public String getResponse(String input) throws IOException {
         return this.ui.getResponse(input);
+    }
+
+    public String toString() {
+        return this.ui.toString();
     }
 
     public static void main(String[] args) throws IOException {

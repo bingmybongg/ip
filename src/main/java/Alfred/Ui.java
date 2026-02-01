@@ -9,10 +9,6 @@ public class Ui {
         this.tasks = tasks;
     }
 
-    String getResponse(String input) {
-        return "okay: " + input;
-    }
-
     /**
      * This method will read the input from the user, parse the input into an actionable
      * command and run different methods based on the input. Afterwhich, it will return true
@@ -20,64 +16,63 @@ public class Ui {
      * @param input
      * @return True if the program should not exit False if the program should exit
      */
-    public boolean readInput(String input) throws IOException {
+    public String getResponse(String input) throws IOException {
         Pair<String, Task> action = Parser.parse(input, this.tasks);
-
+        String res = "";
         switch (action.t()) {
         case ("add"): {
-            System.out.println("Adding task for you Sir\n");
+            res += "Adding task for you Sir\n\n";
             this.tasks.add(action.u());
 
             int i = tasks.size();
-            System.out.println("I have successfully added the task for you Sir:");
-            System.out.println("   " + action.u());
-            System.out.println("You currently have " + i + " task(s) at the moment\n");
-            return true;
+            res += "I have successfully added the task for you Sir:\n";
+            res += "   " + action.u() + "\n";
+            res += "You currently have " + i + " task(s) at the moment\n\n";
+            return res;
         }
         case ("delete"): {
-            System.out.println("Deleting task for you Sir\n");
+            res += "Deleting task for you Sir\n\n";
 
             this.tasks.delete(action.u());
-            System.out.println("I have successfully deleted the task for you Sir:");
-            System.out.println("   " + action.u());
-            System.out.println("You currently have " + this.tasks.size() + " task(s) at the moment\n");
+            res += "I have successfully deleted the task for you Sir:\n";
+            res += "   " + action.u() + "\n";
+            res += "You currently have " + this.tasks.size() + " task(s) at the moment\n\n";
 
-            return true;
+            return res;
         }
         case ("read"): {
-            System.out.println("Here's your list Sir");
-            System.out.println(this.tasks);
-            return true;
+            res += "Here's your list Sir\n";
+            res += this.tasks + "\n";
+            return res;
         }
         case ("mark"): {
-            System.out.println("Marking task for you Sir\n");
+            res += "Marking task for you Sir\n\n";
             Task newTask = this.tasks.mark(action.u());
-            System.out.println("I have successfully marked the task for you Sir:");
-            System.out.println("   " + newTask);
-            return true;
+            res += "I have successfully marked the task for you Sir:\n";
+            res += "   " + newTask + "\n";
+            return res;
         }
         case ("unmark"): {
-            System.out.println("Unmarking task for you Sir\n");
+            res += "Unmarking task for you Sir\n\n";
             Task newTask = this.tasks.unmark(action.u());
-            System.out.println("I have successfully marked the task for you Sir:");
-            System.out.println("   " + newTask);
-            return true;
+            res += "I have successfully marked the task for you Sir:\n";
+            res += "   " + newTask + "\n";
+            return res;
         }
         case("find"): {
             String keyword = action.u().getTask();
-            System.out.println("Finding the tasks containing '" + keyword + "' for you Sir\n");
+            res += "Finding the tasks containing '" + keyword + "' for you Sir\n\n";
             TaskList found = this.tasks.find(keyword);
-            System.out.println("Here are the matching tasks in your list Sir:");
-            System.out.println(found);
-            return true;
+            res += "Here are the matching tasks in your list Sir:\n";
+            res += found + "\n";
+            return res;
         }
         case ("exit"): {
             this.tasks.save();
-            return false;
+            return "Goodbye Sir!\n";
         }
         default: {
-            this.tasks.unknown(action.t());
-            return true;
+            return this.tasks.unknown(action.t());
         }
         }
     }

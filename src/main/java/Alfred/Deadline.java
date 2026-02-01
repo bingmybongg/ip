@@ -57,7 +57,8 @@ public class Deadline extends Task {
 
         if (other instanceof Deadline otherDeadline) {
             return (otherDeadline.task.equals(this.task)) &&
-                   (otherDeadline.deadline.equals(this.deadline)) ;
+                   (otherDeadline.deadline.equals(this.deadline)) &&
+                   (this.isMarked.equals(otherDeadline.isMarked));
         }
 
         return false;

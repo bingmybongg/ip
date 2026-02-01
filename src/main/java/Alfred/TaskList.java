@@ -66,8 +66,8 @@ public class TaskList {
      * This method prints the error faced when a user inputs an unknown command
      * @param error
      */
-    public void unknown(String error) {
-        System.out.println(error);
+    public String unknown(String error) {
+        return error;
     }
 
     /**
@@ -99,12 +99,12 @@ public class TaskList {
     @Override
     public String toString() {
         String res = "";
+        int i = 1;
 
         for (Task task : tasks) {
-            res += (tasks.indexOf(task) + 1) + ". " + task + "\n";
+            res += i + ". " + task + "\n";
+            i++;
         }
-
-        res += "\n";
 
         return res;
     }
