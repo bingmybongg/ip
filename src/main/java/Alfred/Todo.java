@@ -35,7 +35,7 @@ public class Todo extends Task {
         }
 
         if (other instanceof Todo todo) {
-            return todo.task.equals(this.task);
+            return todo.task.equals(this.task) && this.isMarked.equals(todo.isMarked);
         }
 
         return false;

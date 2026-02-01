@@ -61,7 +61,7 @@ public class Event extends Task {
         if (other instanceof Event event) {
             return (event.task.equals(this.task)) &&
                    (event.from.equals(this.from)) &&
-                   (event.to.equals(this.to));
+                   (event.to.equals(this.to)) && this.isMarked.equals(event.isMarked);
         }
 
         return false;
