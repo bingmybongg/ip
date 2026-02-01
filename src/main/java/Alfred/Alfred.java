@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
 
+import javafx.application.Application;
+
 public class Alfred {
     private final Ui ui;
 
@@ -82,6 +84,7 @@ public class Alfred {
     }
 
     public static void main(String[] args) throws IOException {
+        Application.launch(Main.class, args);
         String path = System.getProperty("user.home") + File.separator + "data";
         new Alfred(path).run();
     }
