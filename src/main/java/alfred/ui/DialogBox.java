@@ -1,4 +1,4 @@
-package Alfred;
+package alfred.ui;
 
 import java.io.IOException;
 import java.util.Collections;

@@ -1,10 +1,10 @@
-package Alfred;
+package alfred.task;
 
 public class Event extends Task {
     private final String from;
     private final String to;
 
-    Event(String task, String from, String to) {
+    public Event(String task, String from, String to) {
         super(task);
         this.from = from;
         this.to = to;

@@ -1,7 +1,9 @@
-package Alfred;
+package alfred.task;
 
 import java.io.IOException;
 import java.util.ArrayList;
+
+import alfred.storage.FileManager;
 
 public class TaskList {
     private final FileManager fm;
@@ -65,14 +67,6 @@ public class TaskList {
      */
     public Task get(int i) {
         return this.tasks.get(i);
-    }
-
-    /**
-     * This method prints the error faced when a user inputs an unknown command
-     * @param error
-     */
-    public String unknown(String error) {
-        return error;
     }
 
     /**

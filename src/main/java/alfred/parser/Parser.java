@@ -1,10 +1,25 @@
-package Alfred;
+package alfred.parser;
 
 import java.time.DateTimeException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
+
+import alfred.command.AddCommand;
+import alfred.command.Command;
+import alfred.command.DeleteCommand;
+import alfred.command.ErrorCommand;
+import alfred.command.ExitCommand;
+import alfred.command.FindCommand;
+import alfred.command.ListCommand;
+import alfred.command.MarkCommand;
+import alfred.command.UnmarkCommand;
+import alfred.task.Deadline;
+import alfred.task.Event;
+import alfred.task.Task;
+import alfred.task.TaskList;
+import alfred.task.Todo;
 
 public interface Parser {
     /**
@@ -14,11 +29,11 @@ public interface Parser {
      * @param tasks for methods like mark, delete
      * @return Pair, first value being the instruction, second value being the task you want to use it on
      */
-    static Pair<String, Task> parse(String input, TaskList tasks) {
+    static Command parse(String input, TaskList tasks) {
         String defaultError = "I'm not sure what you're saying sir\n";
 
         if (input.isBlank()) {
-            return new Pair<>(defaultError, null);
+            return new ErrorCommand(defaultError);
         }
 
         List<String> task = Arrays.asList(input.split(" "));
@@ -29,18 +44,20 @@ public interface Parser {
         case ("todo"): {
             String todo = String.join(" ", task.subList(1, task.size()));
 
-            if (todo.isBlank()) { return new Pair<>("You're missing your task Sir\n", null); }
+            if (todo.isBlank()) {
+                return new ErrorCommand("You're missing your task Sir\n");
+            }
 
-            return new Pair<>("add", new Todo(todo));
+            return new AddCommand(new Todo(todo));
         }
         case ("deadline"): {
             try {
                 int i = task.indexOf("/by");
                 if (i < 0 || task.size() - 1 == i) {
-                    return new Pair<>("""
+                    return new ErrorCommand("""
                                 I didn't get your deadline Sir
                                 (Eg: deadline CLEAN THE BATMOBILE /by yyyy-MM-dd HHmm)
-                                """, null);
+                                """);
                 }
 
                 String deadline = String.join(" ", task.subList(i + 1, task.size()));
@@ -51,15 +68,17 @@ public interface Parser {
 
                 String deadlineTask = String.join(" ", task.subList(1, i));
 
-                if (deadlineTask.isBlank()) { return new Pair<>("You're missing your task Sir\n", null); }
+                if (deadlineTask.isBlank()) {
+                    return new ErrorCommand("You're missing your task Sir\n");
+                }
 
-                return new Pair<>("add", new Deadline(deadlineTask, deadline));
+                return new AddCommand(new Deadline(deadlineTask, deadline));
             }
             catch (DateTimeException d) {
-                return new Pair<>("""
+                return new ErrorCommand("""
                                   I can't read your deadline Sir
                                   (Eg: 1999-02-26 1801)
-                                  """, null);
+                                  """);
             }
         }
         case ("event"): {
@@ -71,10 +90,10 @@ public interface Parser {
                     indexTo == task.size() - 1 ||
                     indexTo < indexFrom ||
                     indexFrom < 0) {
-                    return new Pair<>("""
+                    return new ErrorCommand("""
                                 I didn't get your event timing Sir
                                 (Eg: event CLEAN THE BATMOBILE /from yyyy-MM-dd HHmm /to yyyy-MM-dd HHmm)
-                                """, null);
+                                """);
                 }
                 String eventTask = String.join(" ", task.subList(1, indexFrom));
                 String from = String.join(" ", task.subList(indexFrom + 1, indexTo));
@@ -88,22 +107,24 @@ public interface Parser {
                 to = accurateTo.format(presentable);
 
                 if (eventTask.isBlank()) {
-                    return new Pair<>("You're missing your task Sir\n", null);
+                    return new ErrorCommand("You're missing your task Sir\n");
                 }
 
-                return new Pair<>("add", new Event(eventTask, from, to));
+                return new AddCommand(new Event(eventTask, from, to));
             }
             catch (DateTimeException d) {
-                return new Pair<>("""
+                return new ErrorCommand("""
                                 I can't read your deadline Sir
                                 (Eg: 1999-02-26 1801)
-                                """, null);
+                                """);
             }
         }
         case ("list"): {
-            if (task.size() > 1) { return new Pair<>(defaultError, null); }
+            if (task.size() > 1) {
+                return new ErrorCommand(defaultError);
+            }
 
-            return new Pair<>("read", null);
+            return new ListCommand();
         }
         case ("mark"): {
             String markError = """
@@ -111,14 +132,16 @@ public interface Parser {
                                  (Eg: mark #)
                                  """;
 
-            if (task.size() != 2) { return new Pair<>(markError, null); }
+            if (task.size() != 2) {
+                return new ErrorCommand(markError);
+            }
 
             try {
                 Task markTask = tasks.get(Integer.parseInt(task.get(1)) - 1);
-                return new Pair<>("mark", markTask);
+                return new MarkCommand(markTask);
             }
             catch (NumberFormatException | IndexOutOfBoundsException e) {
-                return new Pair<>(markError, null);
+                return new ErrorCommand(markError);
             }
         }
         case ("unmark"): {
@@ -127,14 +150,16 @@ public interface Parser {
                                  (Eg: unmark #)
                                  """;
 
-            if (task.size() != 2) { return new Pair<>(unmarkError, null); }
+            if (task.size() != 2) {
+                return new ErrorCommand(unmarkError);
+            }
 
             try {
                 Task unmarkTask = tasks.get(Integer.parseInt(task.get(1)) - 1);
-                return new Pair<>("unmark",unmarkTask);
+                return new UnmarkCommand(unmarkTask);
             }
             catch (NumberFormatException | IndexOutOfBoundsException e) {
-                return new Pair<>(unmarkError, null);
+                return new ErrorCommand(unmarkError);
             }
         }
         case ("delete"): {
@@ -142,14 +167,16 @@ public interface Parser {
                             Check the list to choose which task to delete Sir
                             (Eg: delete #)
                             """;
-            if (task.size() != 2) { return new Pair<>(deleteError, null); }
+            if (task.size() != 2) {
+                return new ErrorCommand(deleteError);
+            }
 
             try {
                 Task deleteTask = tasks.get(Integer.parseInt(task.get(1)) - 1);
-                return new Pair<>("delete", deleteTask);
+                return new DeleteCommand(deleteTask);
             }
             catch (NumberFormatException | IndexOutOfBoundsException e) {
-                return new Pair<>(deleteError, null);
+                return new ErrorCommand(deleteError);
             }
         }
         case ("find"): {
@@ -157,16 +184,20 @@ public interface Parser {
                     You need to tell me a single keyword you want to find Sir
                     (Eg: find batmobile)
                     """;
-            if (task.size() != 2) { return new Pair<>(findError, null); }
-            return new Pair<>("find", new Todo(task.get(1)));
+            if (task.size() != 2) {
+                return new ErrorCommand(findError);
+            }
+
+            return new FindCommand(task.get(1));
         }
         case ("bye"): {
-            if (task.size() != 1) { return new Pair<>(defaultError, null); }
+            if (task.size() != 1) {
+                return new ErrorCommand(defaultError); }
 
-            return new Pair<>("exit", null);
+            return new ExitCommand();
         }
 
-        default: { return new Pair<>(defaultError, null); }
+        default: { return new ErrorCommand(defaultError); }
         }
     }
 }

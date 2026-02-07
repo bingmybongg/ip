@@ -1,4 +1,4 @@
-package Alfred;
+package alfred.storage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,10 +9,15 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.io.IOException;
 
+import alfred.task.Deadline;
+import alfred.task.Event;
+import alfred.task.Task;
+import alfred.task.Todo;
+
 public class FileManager {
     private final Path file;
 
-    FileManager(String path) throws IOException {
+    public FileManager(String path) throws IOException {
         Files.createDirectories(Paths.get(path));
         this.file = Paths.get(path + File.separator + "alfred.csv");
     }

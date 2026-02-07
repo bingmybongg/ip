@@ -1,7 +1,7 @@
 plugins {
     id 'java'
     id 'application'
-    id 'com.github.johnrengelman.shadow' version '8.1.1'
+    id 'com.github.johnrengelman.shadow' version '7.1.2'
 }
 
 repositories {
@@ -47,12 +47,7 @@ application {
 }
 
 shadowJar {
-    archiveBaseName = "alfred"
-    archiveClassifier = null
-    manifest {
-        attributes 'Main-Class': application.mainClass.get()
-    }
-    mergeServiceFiles()
+    archiveFileName = "alfred.jar"
 }
 
 run{
