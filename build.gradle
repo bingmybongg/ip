@@ -43,7 +43,7 @@ test {
 }
 
 application {
-    mainClass.set("alfred.ui.Main")
+    mainClass.set("alfred.Alfred")
 }
 
 shadowJar {
