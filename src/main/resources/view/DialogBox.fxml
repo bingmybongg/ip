@@ -16,7 +16,7 @@
             <Insets bottom="6.0" left="6.0" right="6.0" top="6.0" />
          </padding>
          <font>
-            <Font size="18.0" />
+            <Font size="14.0" />
          </font></Label>
         <ImageView fx:id="displayPicture" fitHeight="99.0" fitWidth="99.0" pickOnBounds="true" preserveRatio="true" />
     </children>
