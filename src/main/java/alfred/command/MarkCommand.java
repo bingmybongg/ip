@@ -1,9 +1,12 @@
-package Alfred;
+package alfred.command;
+
+import alfred.task.Task;
+import alfred.task.TaskList;
 
 public class MarkCommand extends Command {
     private final Task task;
 
-    MarkCommand(Task task) {
+    public MarkCommand(Task task) {
         this.task = task;
     }
 

@@ -1,9 +1,9 @@
-package Alfred;
+package alfred.task;
 
 public class Deadline extends Task {
     private final String deadline;
 
-    Deadline(String task, String deadline) {
+    public Deadline(String task, String deadline) {
         super(task);
         this.deadline = deadline;
     }

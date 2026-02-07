@@ -1,7 +1,9 @@
-package Alfred;
+package alfred.command;
+
+import alfred.task.TaskList;
 
 public class ListCommand extends Command {
-    ListCommand() {
+    public ListCommand() {
     }
 
     public String execute(TaskList tasks) {

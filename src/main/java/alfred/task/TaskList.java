@@ -1,7 +1,9 @@
-package Alfred;
+package alfred.task;
 
 import java.io.IOException;
 import java.util.ArrayList;
+
+import alfred.storage.FileManager;
 
 public class TaskList {
     private final FileManager fm;

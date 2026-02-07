@@ -1,6 +1,8 @@
-package Alfred;
+package alfred.command;
 
 import java.io.IOException;
+
+import alfred.task.TaskList;
 
 public abstract class Command {
     /**

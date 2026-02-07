@@ -1,9 +1,9 @@
-package Alfred;
+package alfred.ui;
 
 import java.io.IOException;
 
 public class Ui {
-    Ui() {
+    public Ui() {
     }
 
     /**

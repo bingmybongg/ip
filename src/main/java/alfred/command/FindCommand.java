@@ -1,9 +1,11 @@
-package Alfred;
+package alfred.command;
+
+import alfred.task.TaskList;
 
 public class FindCommand extends Command {
     private final String keyword;
 
-    FindCommand(String keyword) {
+    public FindCommand(String keyword) {
         this.keyword = keyword;
     }
 

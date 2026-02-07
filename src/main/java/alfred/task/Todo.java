@@ -1,4 +1,4 @@
-package Alfred;
+package alfred.task;
 
 public class Todo extends Task {
     public Todo(String task) {

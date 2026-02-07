@@ -1,10 +1,10 @@
-package Alfred;
+package alfred.task;
 
 public abstract class Task {
     protected final String task;
     protected final Boolean isMarked;
 
-    Task(String task) {
+    protected Task(String task) {
         if (task.isBlank()) {
             throw new RuntimeException();
         }

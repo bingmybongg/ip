@@ -1,9 +1,12 @@
-package Alfred;
+package alfred.command;
+
+import alfred.task.Task;
+import alfred.task.TaskList;
 
 public class DeleteCommand extends Command {
     private final Task task;
 
-    DeleteCommand(Task task) {
+    public DeleteCommand(Task task) {
         this.task = task;
     }
 

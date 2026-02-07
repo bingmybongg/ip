@@ -1,9 +1,11 @@
-package Alfred;
+package alfred.command;
 
 import java.io.IOException;
 
+import alfred.task.TaskList;
+
 public class ExitCommand extends Command {
-    ExitCommand() {
+    public ExitCommand() {
     }
 
     public String execute(TaskList tasks) throws IOException {

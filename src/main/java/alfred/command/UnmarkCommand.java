@@ -1,9 +1,12 @@
-package Alfred;
+package alfred.command;
+
+import alfred.task.Task;
+import alfred.task.TaskList;
 
 public class UnmarkCommand extends Command {
     private final Task task;
 
-    UnmarkCommand(Task task) {
+    public UnmarkCommand(Task task) {
         this.task = task;
     }
 

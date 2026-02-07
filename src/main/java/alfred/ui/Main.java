@@ -1,7 +1,8 @@
-package Alfred;
+package alfred.ui;
 
 import java.io.IOException;
 
+import alfred.Alfred;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
