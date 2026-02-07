@@ -97,7 +97,5 @@ public class Alfred {
 
     public static void main(String[] args) throws IOException {
         Application.launch(Main.class, args);
-        // String path = System.getProperty("user.home") + File.separator + "data";
-        // new Alfred(path).run();
     }
 }
