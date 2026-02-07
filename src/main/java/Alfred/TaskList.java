@@ -63,14 +63,6 @@ public class TaskList {
     }
 
     /**
-     * This method prints the error faced when a user inputs an unknown command
-     * @param error
-     */
-    public String unknown(String error) {
-        return error;
-    }
-
-    /**
      * This method saves the tasks to a file for the next time the program runs
      */
     public void save() throws IOException {
