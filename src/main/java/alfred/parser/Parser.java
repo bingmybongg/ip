@@ -12,6 +12,7 @@ import alfred.command.DeleteCommand;
 import alfred.command.ErrorCommand;
 import alfred.command.ExitCommand;
 import alfred.command.FindCommand;
+import alfred.command.HelpCommand;
 import alfred.command.ListCommand;
 import alfred.command.MarkCommand;
 import alfred.command.UnmarkCommand;
@@ -30,7 +31,7 @@ public interface Parser {
      * @return Pair, first value being the instruction, second value being the task you want to use it on
      */
     static Command parse(String input, TaskList tasks) {
-        String defaultError = "I'm not sure what you're saying sir\n";
+        String defaultError = "I'm not sure what you're saying sir\nType 'help' if you need it\n";
 
         if (input.isBlank()) {
             return new ErrorCommand(defaultError);
@@ -125,6 +126,13 @@ public interface Parser {
             }
 
             return new ListCommand();
+        }
+        case ("help"): {
+            if (task.size() > 1) {
+                return new ErrorCommand(defaultError);
+            }
+
+            return new HelpCommand();
         }
         case ("mark"): {
             String markError = """
