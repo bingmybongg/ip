@@ -110,7 +110,7 @@ public class FileManager {
             }
             }
         }
-
+        assert Files.exists(this.file) : "The file should be created after executing";
         fw.close();
     }
 }

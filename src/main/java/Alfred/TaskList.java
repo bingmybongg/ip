@@ -22,7 +22,9 @@ public class TaskList {
      * @param task
      */
     public void add(Task task) {
+        int i = this.tasks.size();
         this.tasks.add(task);
+        assert this.tasks.size() == i + 1 : "The task list should increase by 1 only at this point";
     }
 
     /**
@@ -30,7 +32,10 @@ public class TaskList {
      * @param task
      */
     public void delete(Task task) {
+        int i = this.tasks.size();
         this.tasks.remove(task);
+        assert this.tasks.size() == i - 1 : "The task list should decrease by 1 only at this point";
+
     }
     /**
      * This method marks the task
