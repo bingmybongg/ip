@@ -21,8 +21,15 @@ import alfred.task.Event;
 import alfred.task.Task;
 import alfred.task.TaskList;
 import alfred.task.Todo;
+import alfred.ui.Ui;
 
-public interface Parser {
+public class Parser {
+    private final Ui ui;
+    
+    public Parser(Ui ui) {
+        this.ui = ui;
+    }
+    
     /**
      * This method will take in a String input and return pair of values so
      * that the Ui could easily understand what the user wants to do
@@ -30,11 +37,12 @@ public interface Parser {
      * @param tasks for methods like mark, delete
      * @return Pair, first value being the instruction, second value being the task you want to use it on
      */
-    static Command parse(String input, TaskList tasks) {
-        String defaultError = "I'm not sure what you're saying sir\nType 'help' if you need it\n";
+    
+    
+    public Command parse(String input, TaskList tasks) {
 
         if (input.isBlank()) {
-            return new ErrorCommand(defaultError);
+            return new ErrorCommand(this.ui.getDefaultErrorMsg());
         }
 
         List<String> task = Arrays.asList(input.split(" "));
@@ -46,7 +54,7 @@ public interface Parser {
             String todo = String.join(" ", task.subList(1, task.size()));
 
             if (todo.isBlank()) {
-                return new ErrorCommand("You're missing your task Sir\n");
+                return new ErrorCommand(this.ui.getMissingTaskErrorMsg());
             }
 
             return new AddCommand(new Todo(todo));
@@ -70,7 +78,7 @@ public interface Parser {
                 String deadlineTask = String.join(" ", task.subList(1, i));
 
                 if (deadlineTask.isBlank()) {
-                    return new ErrorCommand("You're missing your task Sir\n");
+                    return new ErrorCommand(this.ui.getMissingTaskErrorMsg());
                 }
 
                 return new AddCommand(new Deadline(deadlineTask, deadline));
@@ -108,7 +116,7 @@ public interface Parser {
                 to = accurateTo.format(presentable);
 
                 if (eventTask.isBlank()) {
-                    return new ErrorCommand("You're missing your task Sir\n");
+                    return new ErrorCommand(this.ui.getMissingTaskErrorMsg());
                 }
 
                 return new AddCommand(new Event(eventTask, from, to));
@@ -122,14 +130,14 @@ public interface Parser {
         }
         case ("list"): {
             if (task.size() > 1) {
-                return new ErrorCommand(defaultError);
+                return new ErrorCommand(this.ui.getDefaultErrorMsg());
             }
 
             return new ListCommand();
         }
         case ("help"): {
             if (task.size() > 1) {
-                return new ErrorCommand(defaultError);
+                return new ErrorCommand(this.ui.getDefaultErrorMsg());
             }
 
             return new HelpCommand();
@@ -200,12 +208,14 @@ public interface Parser {
         }
         case ("bye"): {
             if (task.size() != 1) {
-                return new ErrorCommand(defaultError); }
+                return new ErrorCommand(this.ui.getDefaultErrorMsg()); }
 
             return new ExitCommand();
         }
 
-        default: { return new ErrorCommand(defaultError); }
+        default: { 
+            return new ErrorCommand(this.ui.getDefaultErrorMsg()); 
+        }
         }
     }
 }

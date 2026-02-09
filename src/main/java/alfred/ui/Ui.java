@@ -3,6 +3,10 @@ package alfred.ui;
 import java.io.IOException;
 
 public class Ui {
+    private static final String DEFAULT_ERROR_MSG = "I'm not sure what you're saying sir\n" +
+                                                    "Type 'help' if you need it\n";
+    private static final String MISSING_TASK_ERROR_MSG = "You're missing your task Sir\n";
+
     public Ui() {
     }
 
@@ -14,6 +18,14 @@ public class Ui {
      */
     public String getResponse(String action) throws IOException {
         return action;
+    }
+
+    public String getDefaultErrorMsg() {
+        return DEFAULT_ERROR_MSG;
+    }
+
+    public String getMissingTaskErrorMsg() {
+        return MISSING_TASK_ERROR_MSG;
     }
 
     @Override

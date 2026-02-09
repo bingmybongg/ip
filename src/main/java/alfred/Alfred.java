@@ -12,21 +12,24 @@ import javafx.application.Application;
 
 public class Alfred {
     private final Ui ui;
+    private final Parser parser;
     private final TaskList tasks;
 
     public Alfred(String path) throws IOException {
         this.ui = new Ui();
         this.tasks = new TaskList(path);
+        this.parser = new Parser(this.ui);
     }
 
     public Alfred() throws IOException {
         String path = System.getProperty("user.home") + File.separator + "data";
         this.ui = new Ui();
         this.tasks = new TaskList(path);
+        this.parser = new Parser(this.ui);
     }
 
     public String getResponse(String input) throws IOException {
-        Command c = Parser.parse(input, this.tasks);
+        Command c = this.parser.parse(input, this.tasks);
         String response = c.execute(this.tasks);
         return this.ui.getResponse(response);
     }
