@@ -37,8 +37,4 @@ public class Alfred {
     public String toString() {
         return this.ui.toString();
     }
-
-    public static void main(String[] args) throws IOException {
-        Application.launch(Main.class, args);
-    }
 }
