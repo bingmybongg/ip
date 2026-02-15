@@ -6,10 +6,22 @@ import alfred.ui.Main;
 import javafx.application.Application;
 
 /**
- * A launcher class to workaround classpath issues.
+ * A launcher class to workaround classpath issues with JavaFX.
+ * Handles application initialization and error reporting.
  */
 public class Launcher {
-    public static void main(String[] args) throws IOException {
-        Application.launch(Main.class, args);
+    /**
+     * Launches the JavaFX application.
+     *
+     * @param args command-line arguments to pass to the application
+     */
+    public static void main(String[] args) {
+        try {
+            Application.launch(Main.class, args);
+        } catch (Exception e) {
+            System.err.println("Failed to launch application: " + e.getMessage());
+            e.printStackTrace();
+            System.exit(1);
+        }
     }
 }

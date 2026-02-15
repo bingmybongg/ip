@@ -1,98 +1,152 @@
 package alfred.ui;
 
-import java.io.IOException;
-
+/**
+ * Manages user interface interactions and message generation.
+ * <p>
+ * This class is responsible for providing greeting messages, error messages,
+ * and formatting responses for display to the user. It centralizes all
+ * user-facing text to make the application easier to maintain and localize.
+ */
 public class Ui {
-    private static final String DEFAULT_ERROR_MSG = "I'm not sure what you're saying sir\n" +
-                                                    "Type 'help' if you need it\n";
-    private static final String MISSING_TASK_ERROR_MSG = "You're missing your task Sir\n";
+    private static final String GREETING = "Good morning Master!\nWhat do you need from me?\n";
 
-    private static final String UNREADABLE_DATE_ERROR_MSG = """
-                                                            I can't read your date Sir
-                                                            (Eg: 1999-02-26 1801)
-                                                            """;
+    /**
+     * Represents the different types of errors that can occur in the application.
+     * <p>
+     * Each error type has an associated user-friendly message that explains
+     * what went wrong and provides an example of correct usage.
+     */
+    public enum ErrorType {
+        /** Generic error for unrecognized commands */
+        DEFAULT("I'm not sure what you're saying sir\nType 'help' if you need it\n"),
 
-    private static final String DEFAULT_DEADLINE_ERROR_MSG = """
-                                                             I didn't get your deadline Sir
-                                                             (Eg: deadline CLEAN THE BATMOBILE /by yyyy-MM-dd HHmm)
-                                                             """;
+        /** Error when task description is missing */
+        MISSING_TASK("You're missing your task Sir\n(Eg: todo CLEAN THE BATMOBILE)\n"),
 
-    private static final String DEFAULT_EVENT_ERROR_MSG = """
-                                        I didn't get your event timing Sir
-                                        (Eg: event CLEAN THE BATMOBILE /from yyyy-MM-dd HHmm /to yyyy-MM-dd HHmm)
-                                        """;
+        /** Error when date/time format cannot be parsed */
+        UNREADABLE_DATE("I can't read your date Sir\n(Eg: 1999-02-26 1801)\n"),
 
-    private static final String DEFAULT_MARK_ERROR_MSG = """
-                                                         Check the list to choose which task to mark Sir
-                                                         (Eg: mark #)
-                                                         """;
+        /** Error when deadline command is malformed */
+        DEADLINE("I didn't get your deadline Sir\n(Eg: deadline CLEAN THE BATMOBILE /by yyyy-MM-dd HHmm)\n"),
 
-    private static final String DEFAULT_UNMARK_ERROR_MSG = """
-                                                           Check the list to choose which task to unmark Sir
-                                                           (Eg: unmark #)
-                                                           """;
+        /** Error when event command is malformed */
+        EVENT("I didn't get your event timing Sir\n(Eg: event CLEAN THE BATMOBILE /from yyyy-MM-dd HHmm /to yyyy-MM-dd HHmm)\n"),
 
-    private static final String DEFAULT_FIND_ERROR_MSG = """
-                                                        You need to tell me a single keyword you want to find Sir
-                                                        (Eg: find batmobile)
-                                                        """;
+        /** Error when mark command has invalid task index */
+        MARK("Check the list to choose which task to mark Sir\n(Eg: mark #)\n"),
 
-    private static final String DEFAULT_DELETE_ERROR_MSG = """
-                                                           Check the list to choose which task to delete Sir
-                                                           (Eg: delete #)
-                                                           """;
+        /** Error when unmark command has invalid task index */
+        UNMARK("Check the list to choose which task to unmark Sir\n(Eg: unmark #)\n"),
 
+        /** Error when find command is missing keyword or has too many arguments */
+        FIND("You need to tell me a single keyword you want to find Sir\n(Eg: find batmobile)\n"),
+
+        /** Error when delete command has invalid task index */
+        DELETE("Check the list to choose which task to delete Sir\n(Eg: delete #)\n"),
+
+        /** Error when event's start date is after its end date */
+        INVALID_DATE_ORDER("Your event's start date cannot be after its end date Sir\n");
+
+        private final String message;
+
+        /**
+         * Creates an ErrorType with the specified error message.
+         *
+         * @param message the user-friendly error message
+         */
+        ErrorType(String message) {
+            this.message = message;
+        }
+
+        /**
+         * Returns the error message associated with this error type.
+         *
+         * @return the error message string
+         */
+        public String getMessage() {
+            return this.message;
+        }
+    }
+
+    /**
+     * Creates a new Ui instance.
+     * <p>
+     * The UI manages all user-facing text and message formatting.
+     */
     public Ui() {
     }
 
     /**
-     * This method will read the input from the user, parse the input into an actionable
-     * command and run different methods based on the input. After which, it will return true
-     * if the chatbot should continue running and false if the user wants to exit
-     * @return True if the program should not exit False if the program should exit
+     * Returns the response for a given action.
+     * <p>
+     * Currently, this method simply returns the action string as-is.
+     * This serves as a pass-through for command execution results.
+     *
+     * @param action the action result to process (must not be {@code null})
+     * @return the response string
+     * @throws NullPointerException if action is null
      */
-    public String getResponse(String action) throws IOException {
+    public String getResponse(String action) {
+        if (action == null) {
+            throw new NullPointerException("Action cannot be null");
+        }
         return action;
     }
 
-    public String getDefaultErrorMsg() {
-        return DEFAULT_ERROR_MSG;
+    /**
+     * Retrieves the error message for a specific error type.
+     * <p>
+     * The error message includes a description of what went wrong and
+     * an example of correct usage.
+     *
+     * @param errorType the type of error (must not be {@code null})
+     * @return the corresponding user-friendly error message
+     * @throws NullPointerException if errorType is null
+     */
+    public String getErrorMsg(ErrorType errorType) {
+        if (errorType == null) {
+            throw new NullPointerException("ErrorType cannot be null");
+        }
+        return errorType.getMessage();
     }
 
-    public String getMissingTaskErrorMsg() {
-        return MISSING_TASK_ERROR_MSG;
-    }
-
-    public String getUnreadableDateErrorMsg() {
-        return UNREADABLE_DATE_ERROR_MSG;
-    }
-
-    public String getDefaultDeadlineErrorMsg() {
-        return DEFAULT_DEADLINE_ERROR_MSG;
-    }
-
-    public String getDefaultEventErrorMsg() {
-        return DEFAULT_EVENT_ERROR_MSG;
-    }
-
-    public String getDefaultMarkErrorMsg() {
-        return DEFAULT_MARK_ERROR_MSG;
-    }
-
-    public String getDefaultUnmarkErrorMsg() {
-        return DEFAULT_UNMARK_ERROR_MSG;
-    }
-
-    public String getDefaultFindErrorMsg() {
-        return DEFAULT_FIND_ERROR_MSG;
-    }
-
-    public String getDefaultDeleteErrorMsg() {
-        return DEFAULT_DELETE_ERROR_MSG;
-    }
-
+    /**
+     * Returns the greeting message displayed when the application starts.
+     * <p>
+     * The greeting welcomes the user and prompts them for input.
+     *
+     * @return the greeting message
+     */
     @Override
     public String toString() {
-        return "Good morning Master!\nWhat do you need from me?\n";
+        return GREETING;
+    }
+
+    /**
+     * Compares this UI to another object for equality.
+     * <p>
+     * All UI instances are considered equal since they have no state.
+     *
+     * @param other the object to compare with
+     * @return {@code true} if the other object is a Ui, {@code false} otherwise
+     */
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+        return other instanceof Ui;
+    }
+
+    /**
+     * Returns a hash code value for this UI.
+     * <p>
+     * Since all UI instances are equal, they return the same hash code.
+     *
+     * @return a constant hash code value
+     */
+    @Override
+    public int hashCode() {
+        return Ui.class.hashCode();
     }
 }
