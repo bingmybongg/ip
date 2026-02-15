@@ -78,7 +78,10 @@ todo Clean the Batmobile
 ```
 
 **Expected output:**
+
 ![Adding a todo](images/todo.png)
+
+---
 
 #### Deadline
 Tasks with a due date.
@@ -91,7 +94,10 @@ deadline Submit report /by 2026-03-15 1800
 ```
 
 **Expected output:**
+
 ![Adding a deadline](images/deadline.png)
+
+---
 
 #### Event
 Tasks with start and end times.
@@ -103,7 +109,10 @@ Tasks with start and end times.
 event Team meeting /from 2026-03-20 1400 /to 2026-03-20 1600
 ```
 **Expected output:**
+
 ![Adding an event](images/event.png)
+
+---
 
 ### Viewing Tasks
 
@@ -116,8 +125,10 @@ list
 ```
 
 **Expected output:**
+
 ![Showing the list](images/list.png)
 
+---
 
 ### Managing Tasks
 
@@ -130,7 +141,10 @@ mark 1
 ```
 
 **Expected output:**
+
 ![Marking a task](images/mark.png)
+
+---
 
 #### Unmark Task
 **Format:** `unmark INDEX`
@@ -141,7 +155,10 @@ unmark 1
 ```
 
 **Expected output:**
+
 ![Unmarking a task](images/unmark.png)
+
+---
 
 #### Delete Task
 **Format:** `delete INDEX`
@@ -152,7 +169,10 @@ delete 2
 ```
 
 **Expected output:**
+
 ![Deleting a task](images/delete.png)
+
+---
 
 ### Finding Tasks
 
@@ -166,7 +186,10 @@ find meeting
 ```
 
 **Expected output:**
+
 ![Finding tasks](images/find.png)
+
+---
 
 ### Other Commands
 
@@ -176,7 +199,10 @@ Display all available commands.
 **Format:** `help`
 
 **Expected output:**
+
 ![Help command](images/help.png)
+
+---
 
 #### Exit
 Save all tasks and exit the application.
@@ -184,7 +210,10 @@ Save all tasks and exit the application.
 **Format:** `bye`
 
 **Expected output:**
+
 ![Exiting Alfred](images/bye.png)
+
+---
 
 ## Command Reference
 
@@ -231,23 +260,29 @@ To backup your tasks:
 ## FAQ
 
 **Q: What happens if I enter an invalid date format?**
+
 A: Alfred will display an error message with the correct format. Example:
 
 ![Invalid date error](images/invalid_date.png)
 
 **Q: Can I have tasks with the same description?**
+
 A: Yes, Alfred allows duplicate task descriptions. Each task is treated as a separate entry.
 
 **Q: What if the data file is deleted?**
+
 A: Alfred will create a new empty data file on the next run. Your previous tasks will be lost unless you have a backup.
 
 **Q: Can I use special characters in task descriptions?**
+
 A: Yes, most special characters are supported.
 
 **Q: Is there a limit to the number of tasks?**
+
 A: No hard limit, but performance may degrade with thousands of tasks.
 
 **Q: Must I type "bye" to exit?**
+
 A: Yes, typing `bye` ensures that all tasks are saved properly before exiting. Closing the application without typing `bye` may result in unsaved changes.
 
 ## Troubleshooting
