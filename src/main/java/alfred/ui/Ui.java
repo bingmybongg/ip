@@ -137,16 +137,4 @@ public class Ui {
         }
         return other instanceof Ui;
     }
-
-    /**
-     * Returns a hash code value for this UI.
-     * <p>
-     * Since all UI instances are equal, they return the same hash code.
-     *
-     * @return a constant hash code value
-     */
-    @Override
-    public int hashCode() {
-        return Ui.class.hashCode();
-    }
 }
