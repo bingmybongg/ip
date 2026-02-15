@@ -83,7 +83,10 @@ public abstract class Task {
      * @throws NullPointerException if keyword is null (from {@link String#contains(CharSequence)})
      */
     public boolean contains(String keyword) {
-        return this.task.contains(keyword);
+        String upperTask = this.task.toUpperCase();
+        String lowerTask = this.task.toLowerCase();
+
+        return upperTask.contains(keyword.toUpperCase()) || lowerTask.contains(keyword.toLowerCase());
     }
 
     /**
