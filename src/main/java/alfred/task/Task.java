@@ -148,4 +148,8 @@ public abstract class Task {
     public String toString() {
         return (isMarked ? "[X] " : "[ ] ") + this.task;
     }
+
+    public boolean isMarked() {
+        return this.isMarked;
+    }
 }

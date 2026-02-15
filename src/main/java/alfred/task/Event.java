@@ -146,6 +146,6 @@ public final class Event extends Task {
      */
     @Override
     public String toString() {
-        return "[E]" + super.toString() + "\n(from: " + this.from + "\n to: " + this.to + ")";
+        return "[E]" + super.toString() + " (from: " + this.from + "\n to: " + this.to + ")";
     }
 }

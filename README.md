@@ -15,7 +15,7 @@ Alfred is a command-line task manager that helps you track todos, deadlines, and
 
 ## 🚀 Quick Start
 
-1. **Prerequisites**: Ensure you have Java 11 or above installed
+1. **Prerequisites**: Ensure you have Java 17 or above installed
 ```bash
    java -version
 ```
@@ -115,8 +115,22 @@ src/
 │           ├── task/         # Task models and list management
 │           └── ui/           # User interface components
 └── test/
-    └── java/
-        └── alfred/           # Unit and integration tests
+        └── java/
+            └── alfred/
+                ├── task/              # Task tests
+                │   ├── TodoTest.java
+                │   ├── DeadlineTest.java
+                │   ├── EventTest.java
+                │   └── TaskListTest.java
+                │
+                ├── parser/            # Parser tests
+                │   └── ParserTest.java
+                │
+                ├── storage/           # Storage tests
+                │   └── FileManagerTest.java
+                │
+                └── command/           # Command tests
+                    └── AddCommandTest.java
 ```
 
 ## 📋 Requirements
