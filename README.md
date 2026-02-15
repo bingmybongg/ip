@@ -138,5 +138,5 @@ src/
 
 <p align="center">
   <a href="https://bingmybongg.github.io/ip">Documentation</a> •
-  <a href="https://github.com/bingmybongg/ip/releases">Download</a> •
+  <a href="https://github.com/bingmybongg/ip/releases">Download</a> 
 </p>
