@@ -127,13 +127,13 @@ src/
 
 ## 🙏 Acknowledgements
 
-- **CS2103T Teaching Team** - For guidance and project requirements
+- **CS2103 Teaching Team** - For guidance and project requirements
 - **Batman** - For the inspiration behind Alfred's name
 
 ---
 
 <p align="center">
-  Made with ☕ and 🦇 for CS2103T
+  Made with ☕ and 🦇 for CS2103
 </p>
 
 <p align="center">
