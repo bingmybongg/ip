@@ -41,7 +41,7 @@ Download the latest `alfred.jar` and run it with Java. Follow the prompts to sta
 
 ### Prerequisites
 - Java 17 or higher
-- [Optional] Minimum 50MB free disk space
+- [Optional] Minimum 5MB free disk space
 
 ### Steps
 
