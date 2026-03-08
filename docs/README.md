@@ -1,4 +1,4 @@
-# Alfred
+# Alfred User Guide
 
 Alfred is a chatbot that helps you manage your tasks efficiently. With Alfred, you can create, view, and organize your todos, deadlines, and events all in one place. Whether you're a busy professional or a student juggling multiple assignments, Alfred is here to keep you on track.
 
@@ -31,7 +31,7 @@ Alfred is a chatbot that helps you manage your tasks efficiently. With Alfred, y
 
 Download the latest `alfred.jar` and run it with Java. Follow the prompts to start managing your tasks right away!
 
-1. Ensure you have Java 17 or above installed
+1. Ensure you have Java 17
 2. Download `alfred.jar` from [releases](https://github.com/bingmybongg/ip/releases)
 3. Double-click the jar file or run: `java -jar alfred.jar`
 4. Type `help` to see all available commands
@@ -40,7 +40,7 @@ Download the latest `alfred.jar` and run it with Java. Follow the prompts to sta
 ## Installation
 
 ### Prerequisites
-- Java 17 or higher
+- Java 17
 - [Optional] Minimum 5MB free disk space
 
 ### Steps
@@ -238,7 +238,7 @@ Save all tasks and exit the application.
 ## Data Storage
 
 ### File Location
-Tasks are automatically saved to `./data/alfred.csv`
+Tasks are automatically saved to `~/data/alfred.csv`
 
 ### Format
 The CSV file uses the following format:
@@ -253,11 +253,15 @@ Where `MARKED` is `1` for completed tasks or `0` for incomplete tasks.
 
 ### Backup
 To backup your tasks:
-1. Locate `./data/alfred.csv`
+1. Locate `~/data/alfred.csv`
 2. Copy the file to a safe location
 3. To restore, replace the current CSV with your backup
 
 ## FAQ
+
+**Q: What happens if I enter an additional whitespace?**
+
+A: Just re-enter the command without the whitespace
 
 **Q: What happens if I enter an invalid date format?**
 
@@ -291,7 +295,7 @@ A: Yes, typing `bye` ensures that all tasks are saved properly before exiting. C
 **Solution:** Ensure you're in the correct directory where alfred.jar is located.
 
 ### "UnsupportedClassVersionError"
-**Solution:** You need Java 17 or higher. Check your version with `java --version`
+**Solution:** You need Java 17. Check your version with `java --version`
 
 ### Tasks not saving
 **Solution:**
